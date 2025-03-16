@@ -7,53 +7,61 @@
 
 import SwiftUI
 import SwiftData
+import WebKit
+import Defaults
+
+struct WebView: NSViewRepresentable {
+
+    let view: WKWebView = WKWebView()
+  
+    var url_raw: String;
+
+    var request: URLRequest {
+        get{
+            var url: URL = URL(string: url_raw)!
+            
+          let clipboard = NSPasteboard.general.string(forType: .string)
+          
+            url.append(queryItems: [URLQueryItem(name: "clipboard", value: clipboard)])
+            
+          
+            url.append(queryItems: [URLQueryItem(name: "clipboard", value: "soccer")])
+            print(url_raw)
+            let request: URLRequest = URLRequest(url: url)
+            return request
+        }
+    }
+
+    func makeNSView(context: Context) -> WKWebView {
+        view.load(request)
+        return view
+    }
+
+    func updateNSView(_ view: WKWebView, context: Context) {
+        view.load(request)
+      
+    }
+  
+  func reload() {
+    self.view.reload()
+  }
+  
+    
+
+}
+
 
 struct ContentView: View {
     @Environment(\.modelContext) private var modelContext
-    @Query private var items: [Item]
+    
+  let iframe = WebView(url_raw: Defaults[.url] )
+  
+  var body: some View {
+    ZStack {
+      iframe
+      Button(action: {iframe.reload()}, label: { Text("CheckNow") })
+        .frame(width: 0, height: 0).opacity(0).hidden()
+        .keyboardShortcut(KeyboardShortcut("r", modifiers: .command))
+    }}
 
-    var body: some View {
-        NavigationSplitView {
-            List {
-                ForEach(items) { item in
-                    NavigationLink {
-                        Text("Item at \(item.timestamp, format: Date.FormatStyle(date: .numeric, time: .standard))")
-                    } label: {
-                        Text(item.timestamp, format: Date.FormatStyle(date: .numeric, time: .standard))
-                    }
-                }
-                .onDelete(perform: deleteItems)
-            }
-            .navigationSplitViewColumnWidth(min: 180, ideal: 200)
-            .toolbar {
-                ToolbarItem {
-                    Button(action: addItem) {
-                        Label("Add Item", systemImage: "plus")
-                    }
-                }
-            }
-        } detail: {
-            Text("Select an item")
-        }
-    }
-
-    private func addItem() {
-        withAnimation {
-            let newItem = Item(timestamp: Date())
-            modelContext.insert(newItem)
-        }
-    }
-
-    private func deleteItems(offsets: IndexSet) {
-        withAnimation {
-            for index in offsets {
-                modelContext.delete(items[index])
-            }
-        }
-    }
-}
-
-#Preview {
-    ContentView()
-        .modelContainer(for: Item.self, inMemory: true)
 }

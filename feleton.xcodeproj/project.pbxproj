@@ -6,13 +6,33 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		98DF1CF72D87019700680E2C /* Defaults in Frameworks */ = {isa = PBXBuildFile; productRef = 98DF1CF62D87019700680E2C /* Defaults */; };
+		98DF1CF92D87019700680E2C /* DefaultsMacros in Frameworks */ = {isa = PBXBuildFile; productRef = 98DF1CF82D87019700680E2C /* DefaultsMacros */; };
+		98DF1D012D872FCE00680E2C /* KeyboardShortcuts in Frameworks */ = {isa = PBXBuildFile; productRef = 98DF1D002D872FCE00680E2C /* KeyboardShortcuts */; };
+		98DF1D042D87331200680E2C /* Settings in Frameworks */ = {isa = PBXBuildFile; productRef = 98DF1D032D87331200680E2C /* Settings */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		98DF1CDC2D86CFB700680E2C /* feleton.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = feleton.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		98DF1CFE2D87230500680E2C /* Exceptions for "feleton" folder in "feleton" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 98DF1CDB2D86CFB700680E2C /* feleton */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		98DF1CDE2D86CFB700680E2C /* feleton */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				98DF1CFE2D87230500680E2C /* Exceptions for "feleton" folder in "feleton" target */,
+			);
 			path = feleton;
 			sourceTree = "<group>";
 		};
@@ -23,6 +43,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				98DF1CF72D87019700680E2C /* Defaults in Frameworks */,
+				98DF1D042D87331200680E2C /* Settings in Frameworks */,
+				98DF1CF92D87019700680E2C /* DefaultsMacros in Frameworks */,
+				98DF1D012D872FCE00680E2C /* KeyboardShortcuts in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -65,6 +89,10 @@
 			);
 			name = feleton;
 			packageProductDependencies = (
+				98DF1CF62D87019700680E2C /* Defaults */,
+				98DF1CF82D87019700680E2C /* DefaultsMacros */,
+				98DF1D002D872FCE00680E2C /* KeyboardShortcuts */,
+				98DF1D032D87331200680E2C /* Settings */,
 			);
 			productName = feleton;
 			productReference = 98DF1CDC2D86CFB700680E2C /* feleton.app */;
@@ -94,6 +122,11 @@
 			);
 			mainGroup = 98DF1CD32D86CFB700680E2C;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				98DF1CF52D87019700680E2C /* XCRemoteSwiftPackageReference "Defaults" */,
+				98DF1CFF2D872FCE00680E2C /* XCRemoteSwiftPackageReference "KeyboardShortcuts" */,
+				98DF1D022D87331200680E2C /* XCRemoteSwiftPackageReference "Settings" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 98DF1CDD2D86CFB700680E2C /* Products */;
 			projectDirPath = "";
@@ -177,6 +210,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_KEY_LSUIElement = YES;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MACOSX_DEPLOYMENT_TARGET = 14.5;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
@@ -234,6 +268,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_KEY_LSUIElement = YES;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MACOSX_DEPLOYMENT_TARGET = 14.5;
 				MTL_ENABLE_DEBUG_INFO = NO;
@@ -246,15 +281,16 @@
 		98DF1CEE2D86CFB900680E2C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = feleton/feleton.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"feleton/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = feleton/Info.plist;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -272,15 +308,16 @@
 		98DF1CEF2D86CFB900680E2C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = feleton/feleton.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"feleton/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = feleton/Info.plist;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -317,6 +354,56 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		98DF1CF52D87019700680E2C /* XCRemoteSwiftPackageReference "Defaults" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/sindresorhus/Defaults";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 9.0.2;
+			};
+		};
+		98DF1CFF2D872FCE00680E2C /* XCRemoteSwiftPackageReference "KeyboardShortcuts" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/sindresorhus/KeyboardShortcuts";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.3.0;
+			};
+		};
+		98DF1D022D87331200680E2C /* XCRemoteSwiftPackageReference "Settings" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/sindresorhus/Settings";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.1.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		98DF1CF62D87019700680E2C /* Defaults */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 98DF1CF52D87019700680E2C /* XCRemoteSwiftPackageReference "Defaults" */;
+			productName = Defaults;
+		};
+		98DF1CF82D87019700680E2C /* DefaultsMacros */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 98DF1CF52D87019700680E2C /* XCRemoteSwiftPackageReference "Defaults" */;
+			productName = DefaultsMacros;
+		};
+		98DF1D002D872FCE00680E2C /* KeyboardShortcuts */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 98DF1CFF2D872FCE00680E2C /* XCRemoteSwiftPackageReference "KeyboardShortcuts" */;
+			productName = KeyboardShortcuts;
+		};
+		98DF1D032D87331200680E2C /* Settings */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 98DF1D022D87331200680E2C /* XCRemoteSwiftPackageReference "Settings" */;
+			productName = Settings;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 98DF1CD42D86CFB700680E2C /* Project object */;
 }
