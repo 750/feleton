@@ -62,12 +62,14 @@ class FloatingPanel<Content: View>: NSPanel, NSWindowDelegate {
     )
   }
 
-  func toggle() {
+  @discardableResult
+  func toggle() -> Bool {
     if isPresented {
       close()
     } else {
       open()
     }
+    return isPresented
   }
 
   func open() {

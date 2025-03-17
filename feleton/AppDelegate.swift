@@ -13,6 +13,10 @@ import Settings
 
 
 class AppDelegate: NSObject, NSApplicationDelegate {
+  @Default(.title) var title
+  
+  let contentView = ContentView()
+  
   private var settingsWindowController = SettingsWindowController(
     panes: [
       GeneralSettingsViewController(),
@@ -28,32 +32,37 @@ class AppDelegate: NSObject, NSApplicationDelegate {
   var statusBarItem: NSStatusItem!
   
   func application(_ application: NSApplication, open urls: [URL]) {
-    panel.toggle();
-    let url = urls[0];
+    if (panel.toggle()) {
+      contentView.reload()
+    }
+//    let url = urls[0];
   }
   
-  @objc func test(_ sender: Any?) {
-//    NSApp.activate(ignoringOtherApps: true)
-    panel.toggle()
-    
+  @objc func toggle(_ sender: Any?) {
+    if (panel.toggle()) {
+      contentView.reload()
+    }
+   
   }
   
   func applicationWillFinishLaunching(_ notification: Notification) {
     NSApp.setActivationPolicy(.accessory)
-//    Defaults[.url] = "http://127.0.0.1:9090"
+    
+//    NSApp.activate(ignoringOtherApps: true)
+    //    Defaults[.url] = "http://127.0.0.1:9090"
 
   }
   
   func applicationDidFinishLaunching(_ notification: Notification) {
     NSEvent.addLocalMonitorForEvents(matching: .keyUp) { (event) -> NSEvent in
-      if (event.keyCode == 36) {
-        self.panel.toggle()
-      }
+//      if (event.keyCode == 36) {
+//        self.panel.toggle()
+//      }
       return event
     }
     
     KeyboardShortcuts.onKeyUp(for: .toggleFeleton) { [self] in
-      self.panel.toggle()
+      self.toggle(nil)
     }
     
     NSEvent.addLocalMonitorForEvents(matching: .keyUp) { (event) -> NSEvent in
@@ -73,16 +82,22 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     statusBarItem = statusBar.statusItem(withLength: 16)
 
     let button = statusBarItem.button
-    button?.title = Defaults[.title]
-    button?.action = #selector(test)
-
+    button?.action = #selector(toggle)
+    
     
     panel = FloatingPanel(
       contentRect: NSRect(origin: CGPoint(x: Defaults[.positionX], y: Defaults[.positionY]), size: CGSize(width: Defaults[.width], height: Defaults[.height])),
       identifier: Bundle.main.bundleIdentifier ?? "org.750.feleton",
       statusBarButton: button
     ) {
-      ContentView()
+      contentView
+    }
+    
+    
+    Task {
+      for await value in Defaults.updates(.title) {
+        panel.statusBarButton!.title = value
+      }
     }
     panel.setFrameOrigin(NSPoint(x: Defaults[.positionX], y: Defaults[.positionY]))
   }

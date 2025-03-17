@@ -5,6 +5,8 @@ extension Defaults.Keys {
   static let url = Key<String>("url", default: "http://example.com")
   static let title = Key<String>("title", default: "🚦")
   
+  static let sendClipboard = Key<Bool>("sendClipboard", default: true)
+  
   static let positionX = Key<CGFloat>("positionX", default: 0)
   static let positionY = Key<CGFloat>("positionY", default: 0)
   static let width = Key<CGFloat>("width", default: 500)

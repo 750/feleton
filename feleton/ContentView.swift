@@ -11,50 +11,53 @@ import WebKit
 import Defaults
 
 struct WebView: NSViewRepresentable {
-
     let view: WKWebView = WKWebView()
   
-    var url_raw: String;
+    @Default(.url) var url_raw
 
-    var request: URLRequest {
-        get{
-            var url: URL = URL(string: url_raw)!
-            
-          let clipboard = NSPasteboard.general.string(forType: .string)
-          
-            url.append(queryItems: [URLQueryItem(name: "clipboard", value: clipboard)])
-            
-          
-            url.append(queryItems: [URLQueryItem(name: "clipboard", value: "soccer")])
-            print(url_raw)
-            let request: URLRequest = URLRequest(url: url)
-            return request
+    func prepareRequest() -> URLRequest {
+//        print(url_raw)
+        var url: URL = URL(string: (url_raw.isEmpty ? "http://ya.ru" : url_raw))!
+        let clipboard = NSPasteboard.general.string(forType: .string)
+//        print(url)
+      
+        if Defaults[.sendClipboard] {
+          url.append(queryItems: [URLQueryItem(name: "clipboard", value: clipboard)])
         }
+        
+        let request: URLRequest = URLRequest(url: url)
+        return request
     }
 
+  
     func makeNSView(context: Context) -> WKWebView {
-        view.load(request)
+        print("created ")
+        view.load(prepareRequest())
         return view
     }
 
-    func updateNSView(_ view: WKWebView, context: Context) {
-        view.load(request)
-      
+  func updateNSView(_ view: WKWebView, context: Context) {
+      print("updated ")
+      view.load(prepareRequest())
     }
   
-  func reload() {
-    self.view.reload()
-  }
-  
-    
+    func reload() {
+      print("reload")
+      view.load(prepareRequest())
+//      self.updateNSView(view, nil)
+//      self.view.reload()
+    }
 
 }
 
 
 struct ContentView: View {
-    @Environment(\.modelContext) private var modelContext
     
-  let iframe = WebView(url_raw: Defaults[.url] )
+  let iframe = WebView()
+  
+  func reload() {
+    iframe.reload()
+  }
   
   var body: some View {
     ZStack {
@@ -62,6 +65,7 @@ struct ContentView: View {
       Button(action: {iframe.reload()}, label: { Text("CheckNow") })
         .frame(width: 0, height: 0).opacity(0).hidden()
         .keyboardShortcut(KeyboardShortcut("r", modifiers: .command))
+      
     }}
 
 }

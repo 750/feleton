@@ -31,6 +31,7 @@ The main view of “Accounts” settings pane.
 struct GeneralScreen: View {
   @Default(.url) private var url
   @Default(.title) private var title
+  @Default(.sendClipboard) private var sendClipboard
   private let contentWidth: Double = 450.0
 
   var body: some View {
@@ -39,31 +40,39 @@ struct GeneralScreen: View {
         KeyboardShortcuts.Recorder(for: .toggleFeleton)
           .help(Text("OpenTooltip", tableName: "GeneralSettings"))
       }
-    
       
       Settings.Section(label: { Text("Url", tableName: "AppearanceSettings") }) {
-        HStack {
           TextField(_: "", text: $url)
             .frame(width: 300)
             .help(Text("PreviewDelayTooltip", tableName: "AppearanceSettings"))
-        }
+        
+      }
+      
+      Settings.Section(title: "") {
+        
+          Defaults.Toggle("Send clipboard", key: .sendClipboard)
+          Text("in query param 'clipboard'", tableName: "AdvancedSettings")
+            .fixedSize(horizontal: false, vertical: true)
+            .foregroundStyle(.gray)
+          
+            .controlSize(.small)
+        
       }
       
       Settings.Section(label: { Text("Menubar title", tableName: "AppearanceSettings") }) {
-        VStack {
-          HStack {
+
             TextField(_: "", text: $title)
               .frame(width: 300)
               .help(Text("PreviewDelayTooltip", tableName: "AppearanceSettings"))
           
-          }
+          
           
           Text("Single emoji works best", tableName: "AdvancedSettings")
             .fixedSize(horizontal: false, vertical: true)
             .foregroundStyle(.gray)
           
             .controlSize(.small)
-      }
+      
       }
       
     }
