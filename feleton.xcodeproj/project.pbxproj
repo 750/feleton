@@ -7,8 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		98DF1CF72D87019700680E2C /* Defaults in Frameworks */ = {isa = PBXBuildFile; productRef = 98DF1CF62D87019700680E2C /* Defaults */; };
-		98DF1CF92D87019700680E2C /* DefaultsMacros in Frameworks */ = {isa = PBXBuildFile; productRef = 98DF1CF82D87019700680E2C /* DefaultsMacros */; };
+		98CE825E2D87A3A700DDCFD2 /* Defaults in Frameworks */ = {isa = PBXBuildFile; productRef = 98CE825D2D87A3A700DDCFD2 /* Defaults */; };
 		98DF1D012D872FCE00680E2C /* KeyboardShortcuts in Frameworks */ = {isa = PBXBuildFile; productRef = 98DF1D002D872FCE00680E2C /* KeyboardShortcuts */; };
 		98DF1D042D87331200680E2C /* Settings in Frameworks */ = {isa = PBXBuildFile; productRef = 98DF1D032D87331200680E2C /* Settings */; };
 /* End PBXBuildFile section */
@@ -43,9 +42,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				98DF1CF72D87019700680E2C /* Defaults in Frameworks */,
+				98CE825E2D87A3A700DDCFD2 /* Defaults in Frameworks */,
 				98DF1D042D87331200680E2C /* Settings in Frameworks */,
-				98DF1CF92D87019700680E2C /* DefaultsMacros in Frameworks */,
 				98DF1D012D872FCE00680E2C /* KeyboardShortcuts in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -89,10 +87,9 @@
 			);
 			name = feleton;
 			packageProductDependencies = (
-				98DF1CF62D87019700680E2C /* Defaults */,
-				98DF1CF82D87019700680E2C /* DefaultsMacros */,
 				98DF1D002D872FCE00680E2C /* KeyboardShortcuts */,
 				98DF1D032D87331200680E2C /* Settings */,
+				98CE825D2D87A3A700DDCFD2 /* Defaults */,
 			);
 			productName = feleton;
 			productReference = 98DF1CDC2D86CFB700680E2C /* feleton.app */;
@@ -123,9 +120,9 @@
 			mainGroup = 98DF1CD32D86CFB700680E2C;
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
-				98DF1CF52D87019700680E2C /* XCRemoteSwiftPackageReference "Defaults" */,
 				98DF1CFF2D872FCE00680E2C /* XCRemoteSwiftPackageReference "KeyboardShortcuts" */,
 				98DF1D022D87331200680E2C /* XCRemoteSwiftPackageReference "Settings" */,
+				98CE825C2D87A3A700DDCFD2 /* XCRemoteSwiftPackageReference "Defaults" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 98DF1CDD2D86CFB700680E2C /* Products */;
@@ -358,7 +355,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		98DF1CF52D87019700680E2C /* XCRemoteSwiftPackageReference "Defaults" */ = {
+		98CE825C2D87A3A700DDCFD2 /* XCRemoteSwiftPackageReference "Defaults" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/sindresorhus/Defaults";
 			requirement = {
@@ -385,15 +382,10 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		98DF1CF62D87019700680E2C /* Defaults */ = {
+		98CE825D2D87A3A700DDCFD2 /* Defaults */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 98DF1CF52D87019700680E2C /* XCRemoteSwiftPackageReference "Defaults" */;
+			package = 98CE825C2D87A3A700DDCFD2 /* XCRemoteSwiftPackageReference "Defaults" */;
 			productName = Defaults;
-		};
-		98DF1CF82D87019700680E2C /* DefaultsMacros */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 98DF1CF52D87019700680E2C /* XCRemoteSwiftPackageReference "Defaults" */;
-			productName = DefaultsMacros;
 		};
 		98DF1D002D872FCE00680E2C /* KeyboardShortcuts */ = {
 			isa = XCSwiftPackageProductDependency;

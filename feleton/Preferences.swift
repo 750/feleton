@@ -30,10 +30,21 @@ The main view of “Accounts” settings pane.
 */
 struct GeneralScreen: View {
   @Default(.url) private var url
+  
+  func urlIsCorrect() -> Bool {
+    if let urlParsed = URL(string: url) {
+      return true
+    }
+    return false
+  }
+  
   @Default(.title) private var title
   @Default(.sendClipboard) private var sendClipboard
   private let contentWidth: Double = 450.0
 
+  let urlStyle = URL.FormatStyle()
+
+  
   var body: some View {
     Settings.Container(contentWidth: contentWidth) {
       Settings.Section(label: { Text("Toggle", tableName: "GeneralSettings") }) {
@@ -43,9 +54,13 @@ struct GeneralScreen: View {
       
       Settings.Section(label: { Text("Url", tableName: "AppearanceSettings") }) {
           TextField(_: "", text: $url)
+          
             .frame(width: 300)
-            .help(Text("PreviewDelayTooltip", tableName: "AppearanceSettings"))
         
+        Text(urlIsCorrect() ? "Url seems to be correct": "Bad url", tableName: "AdvancedSettings")
+            .fixedSize(horizontal: false, vertical: true)
+            .foregroundStyle(urlIsCorrect() ? .green : .red)
+            .controlSize(.small)
       }
       
       Settings.Section(title: "") {

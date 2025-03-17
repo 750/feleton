@@ -17,7 +17,12 @@ struct WebView: NSViewRepresentable {
 
     func prepareRequest() -> URLRequest {
 //        print(url_raw)
-        var url: URL = URL(string: (url_raw.isEmpty ? "http://ya.ru" : url_raw))!
+      var url: URL
+        if let url_: URL = URL(string: (url_raw.isEmpty ? "http://ya.ru" : url_raw)) {
+          url = url_
+        } else {
+          url = URL(string: "http://ya.ru")!
+        }
         let clipboard = NSPasteboard.general.string(forType: .string)
 //        print(url)
       
